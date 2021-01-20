@@ -1,0 +1,54 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+char num[20][20];
+int main()
+{
+    int N;
+    scanf("%d",&N);
+    while(N--)
+    {
+        int n;
+        scanf("%d",&n);
+        int i,j;
+        int js='A';
+        memset(num,0,sizeof(num));
+        for(i=0; i<=n/2; i++)
+        {
+            for(j=i; j<=n-i-1; j++)
+            {
+                if(js>'Z')
+                    js=js-1-'Z'+'A';
+                num[i][j]=js++;
+            }
+            for(j=i+1; j<=n-i-1; j++)
+            {
+                if(js>'Z')
+                    js=js-1-'Z'+'A';
+                num[j][n-i-1]=js++;
+            }
+            for(j=n-i-2; j>=i; j--)
+            {
+                if(js>'Z')
+                    js=js-1-'Z'+'A';
+                num[n-i-1][j]=js++;
+            }
+ 
+            for(j=n-i-2; j>i; j--)
+            {
+                if(js>'Z')
+                    js=js-1-'Z'+'A';
+                num[j][i]=js++;
+            }
+        }
+        for(int i=0; i<n; i++)
+        {
+            for(int j=0; j<n; j++)
+                printf("%5c",num[i][j]);
+            printf("\n");
+ 
+        }
+    }
+    return 0;
+ 
+}
